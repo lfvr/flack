@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+<script src={{ url_for("static", filename="index.js") }}></script>
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block body %}
+<form id="username" style="margin: auto;">
+    <input class="form-control mr-sm-2" type="text" placeholder="Choose a username" id="username-input">
+    <button class="btn btn-outline-primary" type="submit">Submit</button>
+</form>
+
+
+{% endblock %}

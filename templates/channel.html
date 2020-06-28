@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block head %}
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+    <script src={{ url_for("static", filename="channel.js") }}></script>
+{% endblock %}
+{% block title %}
+    {{ curr_channel.name }}
+{% endblock %}
+
+{% block body %}
+<div id="message">
+    <ul id="messages">
+        {% if curr_channel.messages == None %}
+            <li>No messages yet</li>
+        {% else %}
+            {% for message in curr_channel.messages %}    
+                <li id="single-message"><span id="time">{{ message.timestamp }}</span><br><span id="message-user">{{ message.user }}</span><br>{{ message.text }}</li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+</div> 
+<hr>
+<div id="message-entry">
+    <form id="message-form">
+    <textarea data-channel="{{ curr_channel.name }}" class="form-control" name="message" rows="3" type="text" id="message-textbox" placeholder="Type something..."></textarea>
+    <button class="btn btn-outline-primary" type="submit">Send</button>
+    </form>
+</div>
+
+{% endblock %}

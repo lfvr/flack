@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link href="/static/styles.css" rel="stylesheet">
+        <link href="/static/favicon.ico" rel="icon">
+
+        <script src={{ url_for("static", filename="universal.js") }}></script>
+
+        <title>Flack: {% block title %}{% endblock %}</title>
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">Flack</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <button class="btn btn-outline-primary" id="new-channel">New Channel <span class="sr-only">(current)</span></button>
+                </li>
+                <li>
+                    <form class="form-inline my-2 my-lg-0" id="new-channel-form" action="/new-channel" method="POST">
+                        <input class="form-control mr-sm-2" name="channel-name" type="text" placeholder="Channel Name" id="channel-name">
+                        <button class="btn btn-outline-primary" type="submit">Add Channel</button>
+                    </form>
+                </li>
+                </ul>
+            </div>
+        </nav> 
+        <div class="grid">
+            <div id="sidebar">
+                <h2>Channels</h2>
+                <ul>
+                    {% for channel in channels %}
+                    <li><a href="{{ url_for('channel', channelname=channel.name) }}">{{ channel.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            {% block body %}{% endblock %}
+
+        </div>
+    </body>
+</html>
