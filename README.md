@@ -1,3 +1,3 @@
-# Project 2
+# Flack
 
-Web Programming with Python and JavaScript
+Simple real-time chat site using socket.io
