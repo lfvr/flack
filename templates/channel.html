@@ -14,7 +14,7 @@
             <li>No messages yet</li>
         {% else %}
             {% for message in curr_channel.messages %}    
-                <li id="single-message"><span id="time">{{ message.timestamp }}</span><br><span id="message-user">{{ message.user }}</span><br>{{ message.text }}</li>
+                <li data-user="{{ message.user }}" class="single-message"><span class="time">{{ message.timestamp }}</span><br><span class="message-user">{{ message.user }}</span> says:<br>{{ message.text }}</li>
             {% endfor %}
         {% endif %}
     </ul>
@@ -22,8 +22,7 @@
 <hr>
 <div id="message-entry">
     <form id="message-form">
-    <textarea data-channel="{{ curr_channel.name }}" class="form-control" name="message" rows="3" type="text" id="message-textbox" placeholder="Type something..."></textarea>
-    <button class="btn btn-outline-primary" type="submit">Send</button>
+    <input data-channel="{{ curr_channel.name }}" class="form-control" name="message" type="text" id="message-textbox" placeholder="Say something...">
     </form>
 </div>
 
